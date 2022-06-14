@@ -1,0 +1,60 @@
+server:
+  port: 6050
+
+  # spring:
+  # application:
+  #   name: geovismetadata
+  # resources:
+  #   static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/, file:${file.dir}
+
+swagger:
+  enabled: true
+  title: geovisdemdata
+  version: 1.0.0
+  description: geovisdemdata
+  contact:
+    name: geovisdemdata
+  exclude-path: /error,/actuator/**
+  authorization:
+    name: 认证头
+    key-name: Authorization
+
+
+eureka:
+  instance:
+    prefer-ip-address: false
+    metadata-map:
+      # 以extend_datatype_grib2:  气象数据&气象（一级）&Meteorological(Lv1)&气象（二级）&Meteorological(Lv2)&grib2&post&/api/v1/grib2/parser为例
+      # 1.extend_datatype_grib2:
+      #    【必须】以extend_datatype_为前缀来说明数据类型。后面的grib2是数据类型的标志作为数据库中的唯一标识，【可自定义】
+      # 2.气象数据
+      #    数据三级类别名称中文名，显示位于本地上传/服务器上传的二级菜单
+      # 3.气象（一级）
+      #    数据一级类别名称中文名，显示位于本地上传/服务器上传/高级查询（开发中）的一级菜单
+      # 4.Meteorological(Lv1)
+      #    数据一级类别名称英文名，用于后台对一级数据类别的唯一标识
+      # 5.气象（二级）
+      #    数据二级类别名称中文名，显示位于/高级查询（开发中）的二级菜单
+      # 6.Meteorological(Lv2)
+      #    数据二级类别名称英文名，用于后台对二级数据类别的唯一标识
+      # 7.grib2
+      #    服务支撑上传文件的后缀格式
+      # 8.post
+      #    调用解析的方式
+      # 9./api/v1/grib2/parser
+      #    解析调用的地址
+      extend_datatype_demOut:  Out&数字地形数据&nydem&Out&demOut&zip&post&/api/v1/dem/parser
+      extend_datatype_demTif:  Tif&数字地形数据&nydem&Tif&demTif&zip&post&/api/v1/dem/parser
+      extend_datatype_demEGX:  EGX&数字地形数据&nydem&EGX&demEGX&zip&post&/api/v1/dem/parser
+      extend_datatype_demDem:  Dem&数字地形数据&nydem&Dem&demDem&zip&post&/api/v1/dem/parser
+      extend_datatype_demGrd:  Grd&数字地形数据&nydem&Grd&demGrd&zip&post&/api/v1/dem/parser
+      extend_datatype_demImg:  Img&数字地形数据&nydem&Img&demImg&zip&post&/api/v1/dem/parser
+      extend_datatype_demEGC:  EGC&数字地形数据&nydem&EGC&demEGC&zip&post&/api/v1/dem/parser
+  client:
+    healthcheck:
+      enabled: false
+
+file:
+  dir: ${volume_in_docker}/service-data/datamanager
+
+# logging.level.org.springframework.boot.autoconfigure: ERROR

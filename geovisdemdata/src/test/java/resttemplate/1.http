@@ -1,0 +1,12 @@
+@host = http://192.168.4.85:8310
+
+
+#发送检验的请求
+GET {{host}}/lgtest/api/v1/metadataInfo/exists  HTTP/1.1
+?dataType=456
+
+
+
+
+POST {{host}}/lgtest/api/v1/metadataInfo/exists  HTTP/1.1
+?dataType=456
